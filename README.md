@@ -1,9 +1,18 @@
 # Jeu de l'Othello
 
-Jeu de l'Othello fonctionnant avec la SFML. 
+Jeu de l'Othello avec interface graphique. 
 
-2 modes de jeu : 1v1 et joueur versus réseau de neurones artificiels
-- Commandes
+## Modes de jeu
+
+- Mode 1v1 : 
+
+Mode multijoueur : 2 joueurs s'affrontent.
+
+- Mode IA :
+
+Mode solo : un joueur affronte un réseau de neurones artificiels entrainé au lancement de l'application.
+
+## Commandes
 
 Pour changer de mode : utiliser la touche `M`
 
