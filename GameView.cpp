@@ -1,6 +1,6 @@
 #include "GameView.hpp"
 
-GameView::GameView(const GameAppear& gapp, const char * board, int case_size) :
+GameView::GameView(const GameAppear& gapp, const char* board, int case_size) :
 	m_gapp(gapp), m_board(board), m_case_size(case_size),
 	m_cases(sf::PrimitiveType::Quads, 4 * gapp.plateau_size.x * gapp.plateau_size.y),
 	m_lines(sf::PrimitiveType::Lines, 2 * (gapp.plateau_size.x + gapp.plateau_size.y + 2))

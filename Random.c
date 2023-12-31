@@ -1,10 +1,12 @@
-#include "Random.hpp"
+#include "Random.h"
 
-uint64_t rd::rotl(const uint64_t x, int k) {
+static inline uint64_t rd_rotl(const uint64_t x, int k)
+{
 	return (x << k) | (x >> (64 - k));
 }
 
-void rd::set_seed(uint64_t seed) {
+void rd_set_seed(uint64_t seed)
+{
 	s[0] = seed;
 	seed += 0x9e3779b97f4a7c15;
 	seed = (seed ^ (seed >> 30)) * 0xbf58476d1ce4e5b9;
@@ -12,19 +14,21 @@ void rd::set_seed(uint64_t seed) {
 	s[1] = seed ^ (seed >> 31);
 }
 
-uint64_t rd::next(void) {
+uint64_t rd_next(void)
+{
 	const uint64_t s0 = s[0];
 	uint64_t s1 = s[1];
 	const uint64_t result = s0 + s1;
 
 	s1 ^= s0;
-	s[0] = rotl(s0, 24) ^ s1 ^ (s1 << 16); // a, b
-	s[1] = rotl(s1, 37); // c
+	s[0] = rd_rotl(s0, 24) ^ s1 ^ (s1 << 16); // a, b
+	s[1] = rd_rotl(s1, 37); // c
 
 	return result;
 }
 
-void rd::jump(void) {
+void rd_jump(void) 
+{
 	static const uint64_t JUMP[] = { 0xdf900294d8f554a5, 0x170865df4b3201fc };
 
 	uint64_t s0 = 0;
@@ -35,14 +39,15 @@ void rd::jump(void) {
 				s0 ^= s[0];
 				s1 ^= s[1];
 			}
-			next();
+			rd_next();
 		}
 
 	s[0] = s0;
 	s[1] = s1;
 }
 
-void rd::long_jump(void) {
+void rd_long_jump(void) 
+{
 	static const uint64_t LONG_JUMP[] = { 0xd2a98b26625eee7b, 0xdddf9b1090aa7ac1 };
 
 	uint64_t s0 = 0;
@@ -53,7 +58,7 @@ void rd::long_jump(void) {
 				s0 ^= s[0];
 				s1 ^= s[1];
 			}
-			next();
+			rd_next();
 		}
 
 	s[0] = s0;

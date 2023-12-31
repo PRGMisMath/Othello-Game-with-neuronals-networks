@@ -12,7 +12,7 @@ struct GameAppear {
 
 class GameView : public sf::Drawable, public sf::Transformable {
 public:
-	GameView(const GameAppear& gapp, const char * board, int case_size = 30);
+	GameView(const GameAppear& gapp, const char* board, int case_size = 30);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	void update();
 	void update(int x, int y);
@@ -21,7 +21,7 @@ private:
 private:
 	sf::VertexArray m_cases, m_lines;
 	GameAppear m_gapp;
-	const char * m_board;
+	const char* m_board;
 	int m_case_size;
 };
 
